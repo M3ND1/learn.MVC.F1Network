@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Car>
+
+@{
+    ViewData["Title"] = "Car List";
+}
+<h1>List of Cars in season 2022</h1>
+<div class="row">
+    <div class="col-md-8" style="width:100%;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Manufacturer)</th>
+                    <th>@Html.DisplayNameFor(model => model.Model)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="img-fluid" src="@item.PictureURL" alt="@item.Model" style="max-width:200px;"/>
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(model => item.Model)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(model => item.Description)
+                        </td>
+                        <td class="align-middle" style="width:300px;">
+                            <a class="btn btn-outline-primary d-inline-block" asp-action="Edit" asp-route-id="@item.Id">Edit </a> |   
+                            <a class="btn btn-outline-info d-inline-block" asp-action="Details" asp-route-id="@item.Id">Details </a> |   
+                            <a class="btn btn-outline-danger d-inline-block" asp-action="Delete" asp-route-id="@item.Id">Delete </a>   
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="text-white" style="right:25px; bottom:25px;">
+        <a asp-controller="Cars" asp-action="Create" class="btn btn-succes">Create</a>
+    </div>
+</div>
